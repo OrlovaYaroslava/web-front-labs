@@ -42,3 +42,19 @@ a:active {
     color: #A5694F;
     opacity: 0.3;
   }
+
+div.menu {
+    border: 3px solid #CC3333;
+    border-radius: 5px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+div.menu:hover {
+    background-color: #FFC0CB;
+    box-shadow: 0 0 15px #8B8378;
+}
+
+h1.заг {
+    text-align: center;
+} 
