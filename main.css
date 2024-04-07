@@ -22,5 +22,21 @@ main {
     font-size: 16px;
 }
 a {
+    color: black;
     text-decoration: none;
 }
+a:link {
+    color: #FF7F50;
+    text-decoration: none;
+  }
+  a:visited {
+      color: #A5260A;
+    }
+a:hover {
+  color: #CC7722;
+  text-decoration: underline;
+}
+a:active {
+    color: #A5694F;
+    opacity: 0.3;
+  }
