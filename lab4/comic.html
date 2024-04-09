@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Орлова Ярослава Владиславовна. Лабораторная 4</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-48x48.ico">
+    <style>
+        .comic-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+    
+        .comic-wrapper img {
+            vertical-align: middle;
+            transform: scale(0.5);
+            
+        }
+    
+        .bubble {
+            position: absolute;
+            width: 10%; /* Процент ширины относительно родительского блока */
+            height: auto; /* Высота будет определена пропорционально ширине */
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid #000;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+    
+        .comic-wrapper:hover .bubble1 {
+        transition-delay: 0.1s;
+        opacity: 1;
+        }
+
+        .comic-wrapper:hover .bubble2 {
+            transition-delay: 0.2s;
+            opacity: 1;
+        }
+
+        .comic-wrapper:hover .bubble3 {
+            transition-delay: 0.3s;
+            opacity: 1;
+        }
+
+        .comic-wrapper:hover .bubble4 {
+            transition-delay: 0.4s;
+            opacity: 1;
+        }
+    
+        /* Обновлённые координаты для каждого облачка */
+        .bubble1 { top: 37%; left: 60%; transform: scale(0.3); }
+        .bubble2 { top: 33%; left: 67%; transform: scale(0.5); }
+        .bubble3 { top: 27%; left: 74%; transform: scale(0.9); }
+        .bubble4 { top: 17%; left: 80%; }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 4
+    </header>
+    <main>
+        <div class="comic-wrapper">
+            
+            <img src="i.png" alt="Комикс">
+            
+            <div class="bubble bubble1"></div>
+            <div class="bubble bubble2"></div>
+            <div class="bubble bubble3"></div>
+            <div class="bubble bubble4" >Good news!</div>
+        </div>
+    </main>
+    <footer>
+        &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
+    </footer>
+</body>
+</html>
