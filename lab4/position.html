@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Орлова Ярослава Владиславовна. Лабораторная 4</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-48x48.ico">
+    <style>
+        div.position-static div {
+            display: none;
+        }
+        div.position-relative:hover+div {
+            display: block;
+        }
+        div {
+            width: 300px;
+            line-height: 70px;
+            height: 70px;
+            text-align: center;
+            background-color: white;
+            border: 1px dotted rgb(100, 23, 0);
+            margin: 15px;
+        }
+        .position-relative {
+            position: relative;
+            left: 145px;
+            top: -130px;
+            z-index: 1;
+        }
+        .position-static {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            z-index: 2;
+        }
+        .position-relative:hover {
+            z-index: 3;
+        }
+        .position-absolute {
+            position: absolute;
+            left: 300px;
+            transition: all 0.3s ease;
+        }
+        .position-absolute:hover {
+            transform: scale(1.1); 
+            background-color: #CC4E5C; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ,ФБ, Лабораторная работа 4
+    </header>
+    <main>
+        <div class="position-static">static</div>
+        <div class="position-static">static</div>
+        <div class="position-relative">relative</div>
+        <div>static</div>
+        <div>static</div>
+        <div class="position-absolute">absolute</div>
+        <div>static</div>
+        <div>static</div>
+        <div>static</div>
+        <div>static</div>
+    </main>
+    <footer>
+        &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
+    </footer>
+</body>
+</html>
