@@ -9,11 +9,14 @@
     <link rel="icon" href="../favicon-32x32.png">
     <link rel="icon" href="../favicon-48x48.ico">
     <script>
-        function showSum (){
-            let a = 5154;
-            let b = 7891;
+        function showSum() {
+            let inputA = document.getElementById('numberA')
+            let inputB = document.getElementById('numberB')
+
+            let a = parseInt(inputA.value);
+            let b = parseInt(inputB.value);
             let result = a + b;
-            alert("Сумма чисел " + a + " и " + b + " равна " + result);            
+            alert('Сумма ' + a + ' и ' + b + ' равна ' + result);
         }
         function showAuthor() {
             alert("Автор страницы:\nОрлова Ярослава Владиславовна");
@@ -47,7 +50,9 @@
         НГТУ,ФБ, Лабораторная работа 5
     </header>
     <main>
-        <div class="message" onclick="showSum ()">Сколько будет 5154+7891?</div>
+        <label>Первое число: <input type="number" value="9" id="numberA"> </label><br>
+        <label>Второе число: <input type="number" value="2" id="numberB"> </label><br>
+        <div class="message" onclick="showSum ()">Найти сумму чисел</div>
         <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
         
     </main>
