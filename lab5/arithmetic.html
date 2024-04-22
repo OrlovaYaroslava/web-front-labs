@@ -10,19 +10,51 @@
     <link rel="icon" href="../favicon-48x48.ico">
     <script>
         function showSum() {
-            let inputA = document.getElementById('numberA')
-            let inputB = document.getElementById('numberB')
-
+            let inputA = document.getElementById('numberA');
+            let inputB = document.getElementById('numberB');
             let a = parseInt(inputA.value);
             let b = parseInt(inputB.value);
             let result = a + b;
             alert('Сумма ' + a + ' и ' + b + ' равна ' + result);
         }
+
+        function showDifference() {
+            let inputA = document.getElementById('numberA');
+            let inputB = document.getElementById('numberB');
+            let a = parseInt(inputA.value);
+            let b = parseInt(inputB.value);
+            let result = a - b;
+            alert('Разность ' + a + ' и ' + b + ' равна ' + result);
+        }
+
+        function showMultiplication() {
+            let inputA = document.getElementById('numberA');
+            let inputB = document.getElementById('numberB');
+            let a = parseInt(inputA.value);
+            let b = parseInt(inputB.value);
+            let result = a * b;
+            alert('Произведение ' + a + ' и ' + b + ' равно ' + result);
+        }
+
+        function showDivision() {
+            let inputA = document.getElementById('numberA');
+            let inputB = document.getElementById('numberB');
+            let a = parseInt(inputA.value);
+            let b = parseInt(inputB.value);
+            if (b !== 0) {
+                let result = a / b;
+                alert('Деление ' + a + ' на ' + b + ' равно ' + result);
+            } else {
+                alert('Деление на ноль невозможно!');
+            }
+        }
+
         function showAuthor() {
             alert("Автор страницы:\nОрлова Ярослава Владиславовна");
         }
+
         function showGreeting() {
-            alert("Приветствую вас на моей странице! \nЗнание - сила!"); 
+            alert("Приветствую вас на моей странице!\nЗнание - сила!"); 
         }
     </script>
     
@@ -33,7 +65,7 @@
             height: 25px;
             background-color: #E4717A;
             border: 2px solid #480607;
-            display: inline-block; /*Отображение в строчном виде,внутри вид не меняется */
+            display: inline-block;
             padding: 10px;
             margin: 10px;
         }
@@ -47,14 +79,18 @@
 </head>
 <body>
     <header onclick="showAuthor()">
-        НГТУ,ФБ, Лабораторная работа 5
+        НГТУ, ФБ, Лабораторная работа 5
     </header>
     <main>
-        <label>Первое число: <input type="number" value="9" id="numberA"> </label><br>
-        <label>Второе число: <input type="number" value="2" id="numberB"> </label><br>
-        <div class="message" onclick="showSum ()">Найти сумму чисел</div>
+        <label for="numberA">Первое число:</label>
+        <input type="number" id="numberA" value="9"><br><br>
+        <label for="numberB">Второе число:</label>
+        <input type="number" id="numberB" value="2"><br><br>
+        <div class="message" onclick="showSum()">Найти сумму чисел</div>
+        <div class="message" onclick="showDifference()">Найти разность чисел</div>
+        <div class="message" onclick="showMultiplication()">Найти произведение чисел</div>
+        <div class="message" onclick="showDivision()">Найти деление чисел</div>
         <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
-        
     </main>
     <footer ondblclick="showGreeting()">
         &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
