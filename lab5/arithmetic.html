@@ -56,9 +56,22 @@
         function showGreeting() {
             alert("Приветствую вас на моей странице!\nЗнание - сила!"); 
         }
+        
+        function changeOutput(buttonNum, backColor, textColor, borderColor) {
+            let output = document.getElementById('output');
+            output.innerHTML = 'Нажата кнопка ' + buttonNum;
+            output.style.backgroundColor = backColor;
+            output.style.color = textColor;
+            output.style.border = "2px solid " + borderColor;
+        }
     </script>
     
     <style>
+        #output{
+            border: 1px solid;
+            width: 300px;
+            height: 40px;
+        }
         .message {
             cursor: pointer;
             width: 300px;
@@ -91,6 +104,13 @@
         <div class="message" onclick="showMultiplication()">Найти произведение чисел</div>
         <div class="message" onclick="showDivision()">Найти деление чисел</div>
         <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
+        <div>
+            <input type="button" value="Кнопка 1" onclick="changeOutput(1, '#E9967A', 'black', 'green')">
+            <input type="button" value="Кнопка 2" onclick="changeOutput(2, 'yellow', 'blue', 'red')">
+            <input type="button" value="Кнопка 3" onclick="changeOutput(3, 'cyan', 'black', 'purple')">
+            <input type="button" value="Кнопка 4" onclick="changeOutput(4, 'magenta', 'white', 'orange')">
+        </div>
+        <div id="output"></div>
     </main>
     <footer ondblclick="showGreeting()">
         &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
