@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Орлова Ярослава Владиславовна. Лабораторная 5</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-48x48.ico">
+        <style>
+            .basket {
+                border: 1px solid #000;
+                padding: 15px;
+                margin: 10px;
+                width: fit-content;
+                background-color: #FF7F50;
+            }
+            .item label,
+            .item input {
+                display: block; 
+            }
+            .item label {
+                margin-bottom: 5px; 
+            }
+            .item input {
+                width: 80%;
+                margin-bottom: 10px; 
+            }
+            button {
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
+            #totalCost {
+                margin-top: 10px;
+            }
+            h2 {
+                color: #721422;
+            }
+        </style>
+        <script>
+            function calculateTotal() {
+                const items = document.querySelectorAll('.item input[type="number"]');
+                let total = 0;
+                items.forEach(item => {
+                    const price = item.dataset.price;
+                    const quantity = item.value || 0;
+                    total += price * quantity;
+                });
+                document.getElementById('totalCost').textContent = 'Общая цена: ' + total + ' р';
+            }
+
+            function clearBasket() {
+                document.querySelectorAll('.item input[type="number"]').forEach(input => {
+                    input.value = '';
+                });
+                document.getElementById('totalCost').textContent = '';
+            }
+        </script>
+    </head>
+
+    <body>
+        <header>
+            НГТУ,ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+
+        <main>
+            <div class="basket">
+                <h2>Корзина товаров</h2>
+                <div class="item">
+                    <label for="apples">Яблоки (100р/шт):</label>
+                    <input type="number" id="apples" min="0" placeholder="Кол-во" data-price="100">
+                </div>
+                <div class="item">
+                    <label for="pears">Груши (80р/шт):</label>
+                    <input type="number" id="pears" min="0" placeholder="Кол-во" data-price="80">
+                </div>
+                <div class="item">
+                    <label for="oranges">Апельсины (150р/шт):</label>
+                    <input type="number" id="oranges" min="0" placeholder="Кол-во" data-price="150">
+                </div>
+                <div class="item">
+                    <label for="melons">Дыни (300р/шт):</label>
+                    <input type="number" id="melons" min="0" placeholder="Кол-во" data-price="300">
+                </div>
+                <button onclick="calculateTotal()">Рассчитать</button>
+                <button onclick="clearBasket()">Очистить</button>
+                <p id="totalCost">Общая цена: 0 р</p>
+            </div>
+        </main>
+
+        <footer>
+            &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
+            <hr>
+        </footer>
+    </body>
+</html>
