@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Орлова Ярослава Владиславовна. Лабораторная 4</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-48x48.ico">
+    <style>
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #f1c40f;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2em;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        /* Генерируем случайные позиции для кругов */
+        .circle:nth-child(1) { top: 20%; left: 15%; background-color: #e74c3c; }
+        .circle:nth-child(2) { top: 30%; left: 25%; background-color: #8e44ad; }
+        .circle:nth-child(3) { top: 40%; left: 35%; background-color: #3498db; }
+        .circle:nth-child(4) { top: 50%; left: 45%; background-color: #2ecc71; }
+        .circle:nth-child(5) { top: 60%; left: 55%; background-color: #f1c40f; }
+        .circle:nth-child(6) { top: 70%; left: 65%; background-color: #d35400; }
+        .circle:nth-child(7) { top: 65%; left: 75%; background-color: #1abc9c; }
+        .circle:nth-child(8) { top: 40%; left: 85%; background-color: #2c3e50; }
+        .circle:nth-child(9) { top: 39%; left: 60%; background-color: #16a085; }
+        .circle:nth-child(10) { top: 75%; left: 40%; background-color: #27ae60; }
+    </style>
+    <script>
+        function hideCircle(circle) {
+            circle.style.opacity = '0';
+            circle.style.transform = 'scale(0)';
+        }
+
+        function restoreCircles() {
+            const circles = document.querySelectorAll('.circle');
+            circles.forEach(circle => {
+                circle.style.opacity = '1';
+                circle.style.transform = 'scale(1)';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const circles = document.querySelectorAll('.circle');
+            circles.forEach(circle => {
+                circle.onclick = () => hideCircle(circle);
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ,ФБ, Лабораторная работа 5
+    </header>
+    <main>
+        <!-- Кнопка для восстановления кругов -->
+        <button onclick="restoreCircles()">Восстановить круги</button>
+        <!-- Дивы для кругов с цифрами от 1 до 10 -->
+        <div class="circle">1</div>
+        <div class="circle">2</div>
+        <div class="circle">3</div>
+        <div class="circle">4</div>
+        <div class="circle">5</div>
+        <div class="circle">6</div>
+        <div class="circle">7</div>
+        <div class="circle">8</div>
+        <div class="circle">9</div>
+        <div class="circle">10</div>
+    </main>
+    <footer>
+        &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
+    </footer>
+</body>
+</html>
