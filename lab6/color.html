@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Орлова Ярослава Владиславовна. Лабораторная 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-48x48.ico">
+        <style>
+            div {
+                width: 300px;
+                line-height: 28px;
+                height: 90px;
+                text-align: center;
+                background-color: #f6d6ad; /* Начальный цвет фона */
+                margin: 5px;
+                color: #8e775e; /* Начальный цвет текста */
+                cursor: pointer;
+                transition: background-color 0.5s ease, color 0.5s ease;
+            }
+        </style>
+        <script>
+            function changeColor(div) {
+                // Изменение цвета фона и текста в зависимости от текущего состояния
+                if(div.style.backgroundColor == 'rgb(246, 214, 173)') {
+                    div.style.backgroundColor = '#b0a8b9';
+                    document.getElementById('color-name').innerHTML = 'лиловый';
+                    div.style.color = '#dec6cf';
+                }
+                else if(div.style.backgroundColor == 'rgb(176, 168, 185)') {
+                    div.style.backgroundColor = '#c7d8c6';
+                    document.getElementById('color-name').innerHTML = 'зеленый';
+                    div.style.color = '#6d7b69';
+                }
+                else if(div.style.backgroundColor == 'rgb(199, 216, 198)') {
+                    div.style.backgroundColor = '#dbbadd';
+                    document.getElementById('color-name').innerHTML = 'светло-лиловый';
+                    div.style.color = '#a283a0';
+                }
+                else if(div.style.backgroundColor == 'rgb(219, 186, 221)') {
+                    div.style.backgroundColor = '#a8dadc';
+                    document.getElementById('color-name').innerHTML = 'цвет морской волны';
+                    div.style.color = '#3b4d51';
+                }
+                else {
+                    div.style.backgroundColor = '#f6d6ad';
+                    document.getElementById('color-name').innerHTML = 'апельсиновый';
+                    div.style.color = '#8e775e';
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+            <hr>
+        </header>
+
+        <main>
+            <!-- Интерактивный элемент для демонстрации смены цвета -->
+            <div class="color" ondblclick="changeColor(this)">
+                Цвет: <span id="color-name">апельсиновый</span><br>
+                Сделайте двойной щелчок, чтобы сменить.
+            </div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
+        </footer>
+    </body>
+</html>
