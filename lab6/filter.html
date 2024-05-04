@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Орлова Ярослава Владиславовна. Лабораторная 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-48x48.ico">
+        <style>
+            
+            #wear {
+                max-width: 200px; 
+                max-height: 200px; 
+            }
+        </style>
+        <script>
+            // Функция для изменения изображения в зависимости от выбора цвета и типа одежды
+            function filter() {
+                let color = document.getElementById('wear-color').value; // Получение выбранного цвета из выпадающего списка
+                let type = document.getElementById('wear-type').value; // Получение выбранного типа одежды из выпадающего списка
+                let wear = document.getElementById('wear'); // Получение элемента img для отображения одежды
+
+                // Проверка сочетаний цвета и типа одежды для установки соответствующего изображения
+                if(color == 'Красный' && type == 'Футболка') {
+                    wear.src = 'red_tshirt.jpg';
+                }
+                else if(color == 'Красный' && type == 'Поло') {
+                    wear.src = 'red_polo.jpg';
+                }
+                else if(color == 'Красный' && type == 'Майка') {
+                    wear.src = 'red_top.jpg';
+                }
+                else if(color == 'Белый' && type == 'Футболка') {
+                    wear.src = 'white_tshirt.jpg';
+                }
+                else if(color == 'Белый' && type == 'Поло') {
+                    wear.src = 'white_polo.jpeg';
+                }
+                else if(color == 'Белый' && type == 'Майка') {
+                    wear.src = 'white_top.jpg';
+                }
+                else if(color == 'Черный' && type == 'Футболка') {
+                    wear.src = 'black_tshirt.jpg';
+                }
+                else if(color == 'Черный' && type == 'Поло') {
+                    wear.src = 'black_polo.jpg';
+                }
+                else if(color == 'Черный' && type == 'Майка') {
+                    wear.src = 'black_top.jpg';
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+            <hr>
+        </header>
+
+        <main>
+            <div>
+                Цвет одежды: <!-- Выбор цвета одежды пользователями -->
+                <select id="wear-color"> <!-- Выпадающий список для выбора цвета -->
+                    <option>Красный</option>
+                    <option>Белый</option>
+                    <option>Черный</option>
+                </select><br>
+
+                Тип одежды: <!-- Выбор типа одежды пользователями -->
+                <select id="wear-type"> <!-- Выпадающий список для выбора типа одежды -->
+                    <option>Футболка</option>
+                    <option>Поло</option>
+                    <option>Майка</option>
+                </select><br>
+
+                <button onclick="filter()">OK</button><br> <!-- Кнопка для применения выбранных параметров фильтра -->
+
+                <img id="wear"> <!-- Место, где будет отображаться изображение одежды в зависимости от выбора -->
+            </div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
+        </footer>
+    </body>
+</html>
