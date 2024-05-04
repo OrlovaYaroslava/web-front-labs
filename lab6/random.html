@@ -17,62 +17,77 @@
             padding: 20px; 
             box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
             background-color: #E4717A;
-        } 
+        }
+        .help-section {
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            background-color: #E4717A;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .help-section ul {
+            text-align: left;
+            padding-left: 20px;
+        }
     </style>
     <script>
-             let number;
-            let count = 0;
-            function startGame() {
-                number = Math.floor( Math.random() * 100 ) + 1;
+        let number;
+        let count = 0;
+        function startGame() {
+            number = Math.floor(Math.random() * 100) + 1;
+            let screens = document.getElementsByClassName('game');
+            screens[0].style.display = "none";
+            screens[1].style.display = "block";
+        }
+        function guess() {
+            count++;
+            let input = document.getElementById('user-number');
+            let userNumber = parseInt(input.value);
+            let message = document.getElementById('result');
+            if (isNaN(userNumber)) {
+                message.innerHTML = 'Введите число!';
+                count--;
+                return;
+            }
+            if (userNumber < 1 || userNumber > 100) {
+                message.innerHTML = 'Число должно быть в диапазоне от 1 до 100!';
+                count--;
+                return;
+            }
+            if(userNumber > number) {
+                message.innerHTML = 'Вы ввели слишком большое число';
+            } else if (userNumber < number) {
+                message.innerHTML = 'Вы ввели слишком маленькое число';
+            } else {
                 let screens = document.getElementsByClassName('game');
-                screens[0].style.display = "none";
-                screens[1].style.display = "block";
+                screens[1].style.display = 'none';
+                screens[2].style.display = 'block';
+                document.getElementById('number').innerHTML = number;
+                document.getElementById('try-count').innerHTML = count;
             }
-            function guess() {
-                count++;
-                let input = document.getElementById('user-number');
-                let userNumber = parseInt(input.value);
-                let message = document.getElementById('result');
-                // Проверяем, ввел ли пользователь число
-                if (isNaN(userNumber)) {
-                    message.innerHTML = 'Введите число!';
-                    count--; // Откатываем счетчик попыток, так как попытка не должна считаться
-                    return;
-                }
-                // Проверяем диапазон введенного числа
-                if (userNumber < 1 || userNumber > 100) {
-                    message.innerHTML = 'Число должно быть в диапазоне от 1 до 100!';
-                    count--; // Откатываем счетчик попыток, так как попытка не должна считаться
-                    return;
-                }
-                if(userNumber > number) {
-                    message.innerHTML = 'Вы ввели слишком большое число';
-                }
-                else if (userNumber < number) {
-                    message.innerHTML = 'Вы ввели слишком маленькое число';
-                }
-                else {
-                    let screens = document.getElementsByClassName('game');
-                    screens[1].style.display = 'none';
-                    screens[2].style.display = 'block';
-                    document.getElementById('number').innerHTML = number;
-                    document.getElementById('try-count').innerHTML = count;
-                }
+        }
+        function again() {
+            let screens = document.getElementsByClassName('game');
+            screens[2].style.display = 'none';
+            screens[1].style.display = 'block';
+            number = Math.floor(Math.random() * 100) + 1;
+            count = 0;
+            document.getElementById('result').innerHTML = '';
+            document.getElementById('user-number').value = '';
+        }
+        function toggleRules() {
+            var rules = document.getElementById('game-rules');
+            var button = document.getElementById('toggle-rules');
+            if (rules.style.display === 'none') {
+                rules.style.display = 'block';
+                button.textContent = 'Скрыть правила игры';
+            } else {
+                rules.style.display = 'none';
+                button.textContent = 'Показать правила игры';
             }
-            function again(params) {
-                // Скрывать третий экран и показывать второй
-                    let screens = document.getElementsByClassName('game');
-                    screens[2].style.display = 'none';
-                    screens[1].style.display = 'block';
-
-                    // Загадать новое число и обнулить число попыток
-                    number = Math.floor(Math.random() * 100) + 1;
-                    count = 0;
-
-                    // Очистить блок результатов
-                    document.getElementById('result').innerHTML = '';
-                    document.getElementById('user-number').value = ''; // Очистка поля ввода
-            }
+        }
     </script>
 </head>
 <body>
@@ -81,23 +96,21 @@
     </header>
     <main>
         <div class="game">
-            <button onclick="startGame()">
-                Сыграть в игру
-            </button>
+            <button onclick="startGame()">Сыграть в игру</button>
         </div>
         <div class="game" style="display: none;">
             <h1>Угадай число</h1>
             <div>
-                Задуманно число от 1 до 100. Угадайте какое? <br>
-                <input type="number" value="" min="1" max="100" id="user-number" > <br>
+                Задумано число от 1 до 100. Угадайте какое? <br>
+                <input type="number" value="" min="1" max="100" id="user-number"> <br>
                 <button onclick="guess()">Угадать</button>
                 <div id="result"></div>
             </div>            
         </div>
         <div class="game" style="display: none;">
-            <h1>Поздравляем вы выйграли!</h1>
+            <h1>Поздравляем вы выиграли!</h1>
             <div>
-                Задуманно число: <span id="number"></span>
+                Задумано число: <span id="number"></span>
             </div>
             <div>
                 Количество попыток: <span id="try-count"></span>
@@ -105,6 +118,19 @@
             <div>
                 <button onclick="again()">Сыграть еще раз</button>
             </div>                       
+        </div>
+        <div class="help-section">
+            <button id="toggle-rules" onclick="toggleRules()">Показать правила игры</button>
+            <div id="game-rules" style="display: none;">
+                <ul>
+                    <li>I. Игра начинается с нажатия на кнопку "Сыграть в игру".</li>
+                    <li>II. Вам нужно угадать число от 1 до 100, которое задумал компьютер.</li>
+                    <li>III. Введите предполагаемое число в поле и нажмите "Угадать".</li>
+                    <li>IV. Если число больше задуманного, получите подсказку "слишком большое число".</li>
+                    <li>V. Если число меньше задуманного, получите подсказку "слишком маленькое число".</li>
+                    <li>VI. Игра продолжается до тех пор, пока вы не угадаете число.</li>
+                </ul>
+            </div>
         </div>
     </main>
     <footer>
