@@ -51,6 +51,23 @@
             justify-content: center;
             color: #333; /* Цвет текста */
         }
+        .color-circle {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+            font-size: 12px;
+            color: white; /* Цвет текста */
+        }
+        .red {
+            background-color: red;
+        }
+        .green {
+            background-color: green;
+        }
     </style>
     <script>
         function addNewBlock() {
@@ -107,6 +124,20 @@
                 container.appendChild(block);
             }
         }
+
+        function addColorCircles() {
+            let container = document.querySelector('#block-container');
+            let numberOfCircles = parseInt(document.getElementById('circleCount').value) || 10;
+            container.innerHTML = ''; // Очистить предыдущие блоки
+
+            for (let i = numberOfCircles; i > 0; i--) {
+                let circle = document.createElement('div');
+                circle.className = 'color-circle';
+                circle.classList.add(i % 2 === 0 ? 'green' : 'red'); // Чередование цветов
+                circle.innerHTML = `${i}`;
+                container.appendChild(circle);
+            }
+        }
     </script>
 </head>
 <body>
@@ -121,6 +152,10 @@
         <button onclick="add20_50()">Добавить блоки от 20 до 50</button>
         <button onclick="addCircles()">10 => -80</button>
         <button onclick="addOpacityBlocks()">Добавить блоки с прозрачностью</button>
+        <br>
+        <label for="circleCount">Количество кругов:</label>
+        <input type="number" id="circleCount" min="1" value="10">
+        <button onclick="addColorCircles()">Цветные круги</button>
         <div id="block-container"></div>
     </main>
     <footer>
