@@ -10,11 +10,11 @@
     <link rel="icon" href="../favicon-48x48.ico">
     <style>
         .new-block {
-            background-color: #1E90FF; 
-            border: 2px solid #a8c3d8; 
+            background-color: #d3e6f5; /* Пастельный голубой цвет */
+            border: 2px solid #a8c3d8; /* Пастельный цвет рамки */
             height: 40px;
-            margin: 10px 0; 
-            border-radius: 8px;
+            margin: 10px 0; /* Внешние отступы сверху и снизу */
+            border-radius: 8px; /* Скругленные углы */
         }
     </style>
     <script>
@@ -24,6 +24,21 @@
 
             document.querySelector('main').appendChild(newBlock);
         }
+
+        function addNewBlocks() {
+            let main = document.querySelector('main');
+            let numberOfBlocks = parseInt(document.getElementById('blockCount').value) || 10;
+            main.innerHTML = ''; // Очистить предыдущие блоки
+
+            for (let i = 0; i < numberOfBlocks; i++) {
+                let newBlock = document.createElement('div');
+                newBlock.className = 'new-block';
+                newBlock.style.width = `${150 + i * 20}px`; // Увеличение ширины каждого блока
+                newBlock.innerHTML = `Блок № ${i + 1}: 2*${i}<sup>2</sup>= ${2 * i ** 2}`;
+
+                main.appendChild(newBlock);
+            }
+        }
     </script>
 </head>
 <body>
@@ -31,7 +46,10 @@
         НГТУ,ФБ, Лабораторная работа 7
     </header>
     <main>
+        <label for="blockCount">Количество блоков:</label>
+        <input type="number" id="blockCount" min="1" value="10">
         <button onclick="addNewBlock()">Добавить блок</button>
+        <button onclick="addNewBlocks()">Добавить блоки</button>
     </main>
     <footer>
         &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
