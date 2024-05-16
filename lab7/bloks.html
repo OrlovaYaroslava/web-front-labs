@@ -15,26 +15,51 @@
             height: 40px;
             margin: 10px 0; /* Внешние отступы сверху и снизу */
             border-radius: 8px; /* Скругленные углы */
+            
         }
+        .special-block {
+            background-color: #f5d3e6; /* Пастельный розовый цвет */
+            border: 2px solid #d8a8c3; /* Пастельный цвет рамки */
+            height: 60px;
+            margin: 10px 0; /* Внешние отступы сверху и снизу */
+            border-radius: 8px; /* Скругленные углы */
+            color: #333; /* Цвет текста */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
     </style>
     <script>
         function addNewBlock() {
             let newBlock = document.createElement('div');
             newBlock.className = 'new-block';
 
-            document.querySelector('main').appendChild(newBlock);
+            document.querySelector('#block-container').appendChild(newBlock);
         }
 
         function addNewBlocks() {
-            let main = document.querySelector('main');
+            let container = document.querySelector('#block-container');
             let numberOfBlocks = parseInt(document.getElementById('blockCount').value) || 10;
-            main.innerHTML = ''; // Очистить предыдущие блоки
+            container.innerHTML = ''; // Очистить предыдущие блоки
 
             for (let i = 0; i < numberOfBlocks; i++) {
                 let newBlock = document.createElement('div');
                 newBlock.className = 'new-block';
-                newBlock.style.width = `${150 + i * 20}px`; // Увеличение ширины каждого блока
+                newBlock.style.width = `${100 + i * 20}px`; // Увеличение ширины каждого блока
                 newBlock.innerHTML = `Блок № ${i + 1}: 2*${i}<sup>2</sup>= ${2 * i ** 2}`;
+
+                container.appendChild(newBlock);
+            }
+        }
+
+        function add20_50() {
+            let main = document.querySelector('main');
+            for (let i = 20; i <= 50; i += 2.5) {
+                let newBlock = document.createElement('div');
+                newBlock.className = 'special-block';
+
+                newBlock.innerHTML = `${i}`;
 
                 main.appendChild(newBlock);
             }
@@ -50,6 +75,8 @@
         <input type="number" id="blockCount" min="1" value="10">
         <button onclick="addNewBlock()">Добавить блок</button>
         <button onclick="addNewBlocks()">Добавить блоки</button>
+        <button onclick="add20_50()">Добавить блоки от 20 до 50</button>
+        <div id="block-container"></div>
     </main>
     <footer>
         &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
