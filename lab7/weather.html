@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Орлова Ярослава Владиславовна. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-48x48.ico">
+    <style>
+        .temperature {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .temperature h2 {
+            margin-top: 0;
+        }
+        .temperature p {
+            margin: 5px 0;
+        }
+    </style>
+    <script>
+        function showTemperature() {
+            const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok';
+            fetch(url)
+                .then(response => response.json())
+                .then(json => {
+                    const today = new Date().toISOString().split('T')[0]; // Получаем текущую дату в формате YYYY-MM-DD
+                    const times = json.hourly.time;
+                    const temperatures = json.hourly.temperature_2m;
+
+                    const tempAt8 = temperatures[times.findIndex(time => time.startsWith(today + 'T08'))];
+                    const tempAt12 = temperatures[times.findIndex(time => time.startsWith(today + 'T12'))];
+                    const tempAt20 = temperatures[times.findIndex(time => time.startsWith(today + 'T20'))];
+
+                    document.getElementById('temperature').innerHTML = `
+                        <div class="temperature">
+                            <h2>Температура на сегодня</h2>
+                            <p><strong>08:00 утра:</strong> ${tempAt8 !== undefined ? tempAt8 : 'нет данных'} °C</p>
+                            <p><strong>12:00 дня:</strong> ${tempAt12 !== undefined ? tempAt12 : 'нет данных'} °C</p>
+                            <p><strong>20:00 вечера:</strong> ${tempAt20 !== undefined ? tempAt20 : 'нет данных'} °C</p>
+                        </div>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении данных:', error);
+                    document.getElementById('temperature').innerHTML = `
+                        <div class="temperature">
+                            <h2>Температура на сегодня</h2>
+                            <p>Не удалось получить данные о температуре. Попробуйте позже.</p>
+                        </div>
+                    `;
+                });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ,ФБ, Лабораторная работа 7
+    </header>
+    <main>
+        <button onclick="showTemperature()">Показать температуру на сегодня</button>
+        <div id="temperature"></div>
+    </main>
+    <footer>
+        &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
+    </footer>
+</body>
+</html>
