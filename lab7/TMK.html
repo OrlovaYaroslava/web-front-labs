@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Орлова Ярослава Владиславовна. Лабораторная 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-48x48.ico">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        function showStockPrices() {
+            const dates = [
+                '02.05.2024', '03.05.2024', '06.05.2024', '07.05.2024',
+                '08.05.2024', '10.05.2024', '13.05.2024', '14.05.2024',
+                '15.05.2024', '16.05.2024'
+            ];
+            const prices = [
+                222.02, 222.00, 222.74, 222.10, 223.46, 224.00,
+                225.00, 224.50, 223.50, 220.10
+            ];
+
+            let table = document.getElementById('stock-table');
+            table.innerHTML = ''; // Очистить предыдущие строки таблицы
+
+            // Добавляем заголовок таблицы
+            let thead = document.createElement('thead');
+            let headerRow = document.createElement('tr');
+            let headers = ['Дата', 'Цена акций', 'Разница'];
+            headers.forEach(headerText => {
+                let th = document.createElement('th');
+                th.innerText = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Добавляем тело таблицы
+            let tbody = document.createElement('tbody');
+            let sum = 0;
+            let maxPrice = prices[0];
+            let minPrice = prices[0];
+
+            for (let i = 0; i < dates.length; i++) {
+                let tr = document.createElement('tr');
+
+                let tdDate = document.createElement('td');
+                tdDate.innerText = dates[i];
+                tr.appendChild(tdDate);
+
+                let tdPrice = document.createElement('td');
+                tdPrice.innerText = prices[i].toFixed(2);
+                tr.appendChild(tdPrice);
+
+                let tdDifference = document.createElement('td');
+                if (i === 0) {
+                    tdDifference.innerText = '-';
+                } else {
+                    let difference = (prices[i] - prices[i - 1]).toFixed(2);
+                    tdDifference.innerText = difference;
+                }
+                tr.appendChild(tdDifference);
+
+                tbody.appendChild(tr);
+
+                sum += prices[i];
+                if (prices[i] > maxPrice) maxPrice = prices[i];
+                if (prices[i] < minPrice) minPrice = prices[i];
+            }
+
+            table.appendChild(tbody);
+
+            let averagePrice = (sum / prices.length).toFixed(2);
+
+            let detail = document.getElementById('detail');
+            detail.innerHTML = `
+                Средняя стоимость акций: ${averagePrice}<br>
+                Максимальная стоимость акций: ${maxPrice.toFixed(2)}<br>
+                Минимальная стоимость акций: ${minPrice.toFixed(2)}
+            `;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ,ФБ, Лабораторная работа 7
+    </header>
+    <main>
+        <button onclick="showStockPrices()">Курс акций ТМК</button>
+        <table id="stock-table"></table>
+        <div id="detail"></div>
+    </main>
+    <footer>
+        &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
+    </footer>
+</body>
+</html>
