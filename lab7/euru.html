@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Орлова Ярослава Владиславовна. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-48x48.ico">
+    <style>
+        .exchange-rate {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .exchange-rate h2 {
+            margin-top: 0;
+        }
+        .exchange-rate p {
+            margin: 5px 0;
+        }
+        .exchange-rate .difference {
+            font-weight: bold;
+        }
+        .exchange-rate .up {
+            color: green;
+        }
+        .exchange-rate .down {
+            color: red;
+        }
+    </style>
+    <script>
+        function getEuroExchangeRate() {
+            const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+            fetch(url)
+                .then(response => response.json())
+                .then(json => {
+                    const date = new Date(json.Date).toLocaleDateString();
+                    const previousDate = new Date(json.PreviousDate).toLocaleDateString();
+                    const currentRate = json.Valute.EUR.Value.toFixed(2);
+                    const previousRate = json.Valute.EUR.Previous.toFixed(2);
+                    const difference = (currentRate - previousRate).toFixed(2);
+                    const trend = difference > 0 ? 'поднялся' : 'опустился';
+                    const trendClass = difference > 0 ? 'up' : 'down';
+
+                    document.getElementById('exchange-rate').innerHTML = `
+                        <div class="exchange-rate">
+                            <h2>Курс евро</h2>
+                            <p><strong>Дата запроса:</strong> ${date}</p>
+                            <p><strong>Курс евро:</strong> ${currentRate} ₽</p>
+                            <p><strong>Курс евро за предыдущую дату (${previousDate}):</strong> ${previousRate} ₽</p>
+                            <p class="difference ${trendClass}"><strong>Разница:</strong> ${difference} ₽ (${trend} курс)</p>
+                            <p>Источник: <a href="https://www.cbr-xml-daily.ru/" target="_blank">Центральный банк России</a></p>
+                        </div>
+                    `;
+                });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+    </header>
+    <main>
+        <button onclick="getEuroExchangeRate()">Курс евро</button>
+        <div id="exchange-rate"></div>
+    </main>
+    <footer>
+        &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
+    </footer>
+</body>
+</html>
