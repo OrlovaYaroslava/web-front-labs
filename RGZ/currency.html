@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс валют</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-48x48.ico">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Выполняется после загрузки всего содержимого страницы.
+            fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+                // Делаем запрос к API, который предоставляет актуальные курсы валют.
+                .then(response => response.json())
+                // Преобразуем ответ в формат JSON.
+                .then(data => {
+                    // Получаем курс датской кроны из данных.
+                    const dkkRate = data.Valute.DKK.Value;
+                    // Отображаем курс датской кроны на странице.
+                    document.getElementById('dkk-rate').innerText = dkkRate;
+
+                    // Добавляем обработчик события на кнопку конвертации рублей в кроны.
+                    document.getElementById('convert-to-dkk').addEventListener('click', function () {
+                        // Получаем значение введенной суммы в рублях.
+                        const rubAmount = parseFloat(document.getElementById('rub').value);
+                        const result = document.getElementById('result');
+
+                        // Проверяем, является ли введенное значение числом.
+                        if (!isNaN(rubAmount)) {
+                            // Выполняем конвертацию и отображаем результат.
+                            result.innerText = (rubAmount / dkkRate).toFixed(2) + ' DKK';
+                        } else {
+                            // Если значение не число, выводим сообщение об ошибке.
+                            result.innerText = 'Введите сумму в рублях для конвертации.';
+                        }
+                    });
+
+                    // Добавляем обработчик события на кнопку конвертации крон в рубли.
+                    document.getElementById('convert-to-rub').addEventListener('click', function () {
+                        // Получаем значение введенной суммы в кронах.
+                        const dkkAmount = parseFloat(document.getElementById('dkk').value);
+                        const result = document.getElementById('result');
+
+                        // Проверяем, является ли введенное значение числом.
+                        if (!isNaN(dkkAmount)) {
+                            // Выполняем конвертацию и отображаем результат.
+                            result.innerText = (dkkAmount * dkkRate).toFixed(2) + ' RUB';
+                        } else {
+                            // Если значение не число, выводим сообщение об ошибке.
+                            result.innerText = 'Введите сумму в DKK для конвертации.';
+                        }
+                    });
+                })
+                .catch(error => console.error('Ошибка:', error));
+                // Обрабатываем ошибки при запросе к API.
+        });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav>
+            <ul>
+                <li><a href="index.html">О компании</a></li>
+                <li><a href="news.html">Новости</a></li>
+                <li><a href="currency.html">Курс валют</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="video.html">Видео</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="content">
+        <div class="container">
+            <h1>Курс валют</h1>
+            <p>Актуальный курс Датской кроны (DKK): <span id="dkk-rate"></span> RUB</p>
+            <div>
+                <label for="rub">Сумма в рублях:</label>
+                <input type="number" id="rub" placeholder="Введите сумму в рублях">
+                <button id="convert-to-dkk">Конвертировать в DKK</button>
+            </div>
+            <div>
+                <label for="dkk">Сумма в DKK:</label>
+                <input type="number" id="dkk" placeholder="Введите сумму в DKK">
+                <button id="convert-to-rub">Конвертировать в рубли</button>
+            </div>
+            <p id="result"></p>
+        </div>
+    </main>
+</body>
+</html>
