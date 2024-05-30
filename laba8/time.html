@@ -8,17 +8,28 @@
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="icon" href="../favicon-32x32.png">
     <link rel="icon" href="../favicon-48x48.ico">
+    <script src="time.js"></script>
+    <style>
+
+        #seconds {
+            font-size: 100px;
+            color: #007BFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+    </style>
 </head>
 <body>
     <header>
-        НГТУ,ФБ, Лабораторная работа 8
+        НГТУ, ФБ, Лабораторная работа 8
+        <div id="time">00:00:00</div>
+        <hr>
     </header>
     <main>
-        <ol>
-            <li><a href="date.html"> Дата</a></li> 
-            <li><a href="get-days-count.html">Число дней с даты рождения</a></li> 
-            <li><a href="time.html">Время</a></li>
-          </ol>
+        <div id="seconds">00</div>
     </main>
     <footer>
         &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
