@@ -8,19 +8,20 @@
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="icon" href="../favicon-32x32.png">
     <link rel="icon" href="../favicon-48x48.ico">
+    <script src="get-days-count.js"></script>
 </head>
 <body>
     <header>
         НГТУ,ФБ, Лабораторная работа 8
     </header>
     <main>
-        <ol>
-            <li><a href="date.html"> Дата</a></li> 
-            <li><a href="get-days-count.html">Число дней с даты рождения</a></li> 
-            <li><a href="TMK.html">Котировки акций компании ТМК</a></li>
-            <li><a href="euru.html">Курс евро</a></li>
-            <li><a href="weather.html">Погода</a></li>
-          </ol>
+        <div class="date-form">
+            <label for="input-date">Дата рождения: </label>
+            <input type="date" id="input-date">
+            <button onclick="showDaysCount()">Показать число дней</button>
+            <button class="clear" onclick="clearFields()">Очистить</button>
+        </div>
+        <div id="days-count-result"></div>
     </main>
     <footer>
         &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
