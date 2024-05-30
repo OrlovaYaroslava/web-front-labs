@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Орлова Ярослава Владиславовна. Лабораторная 8</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-48x48.ico">
+    <script src="lab8.js"></script>
+    <style>
+        #current-date, #additional-info {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+        }
+        .date-time, .date-info {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        p {
+            margin: 10px 0;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        .input-group input {
+            margin: 0 5px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        .input-group button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body onload="showDate()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 8
+    </header>
+    <main>
+        <div id="current-date"></div>
+        <div id="additional-info"></div>
+        
+        <div class="input-group">
+            <input type="number" id="input-day" placeholder="День" min="1" max="31">
+            <input type="number" id="input-month" placeholder="Месяц" min="1" max="12">
+            <input type="number" id="input-year" placeholder="Год" min="1900" max="2100">
+            <button onclick="getDayOfWeek()">День недели</button>
+        </div>
+    </main>
+    <footer>
+        &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
+    </footer>
+</body>
+</html>
