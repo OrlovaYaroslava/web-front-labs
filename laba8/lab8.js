@@ -16,4 +16,13 @@ function showDate() {
     });
 
     out.innerHTML = html;
+
+    let additionalInfo = document.getElementById('additional-info');
+    let daysOfWeek = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
+    additionalInfo.innerHTML = `
+        <p>Текущий год: <span class="date-info">${today.getFullYear()}</span></p>
+        <p>Текущий месяц: <span class="date-info">${today.toLocaleString('ru-RU', { month: 'long' })}</span></p>
+        <p>Текущая дата: <span class="date-info">${today.getDate()}</span></p>
+        <p>День недели: <span class="date-info">${daysOfWeek[today.getDay()]}</span></p>
+    `;
 }
