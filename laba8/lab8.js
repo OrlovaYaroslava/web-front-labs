@@ -26,3 +26,15 @@ function showDate() {
         <p>День недели: <span class="date-info">${daysOfWeek[today.getDay()]}</span></p>
     `;
 }
+
+function getDayOfWeek() {
+    let day = document.getElementById('input-day').value;
+    let month = document.getElementById('input-month').value;
+    let year = document.getElementById('input-year').value;
+    
+    let date = new Date(year, month - 1, day);
+    let daysOfWeek = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
+    
+    let dayOfWeek = daysOfWeek[date.getDay()];
+    alert(`День недели для даты ${day}.${month}.${year}: ${dayOfWeek}`);
+}

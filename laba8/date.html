@@ -22,6 +22,18 @@
         p {
             margin: 10px 0;
         }
+        .input-group {
+            margin: 20px 0;
+        }
+        .input-group input {
+            margin: 0 5px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        .input-group button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body onload="showDate()">
@@ -31,6 +43,13 @@
     <main>
         <div id="current-date"></div>
         <div id="additional-info"></div>
+        
+        <div class="input-group">
+            <input type="number" id="input-day" placeholder="День" min="1" max="31">
+            <input type="number" id="input-month" placeholder="Месяц" min="1" max="12">
+            <input type="number" id="input-year" placeholder="Год" min="1900" max="2100">
+            <button onclick="getDayOfWeek()">День недели</button>
+        </div>
     </main>
     <footer>
         &copy; Орлова Ярослава Владиславовна, ФБИ-22, 2 курс, 2024
